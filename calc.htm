@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Calc</title>
+
+    <script type="text/javascript" src="scripts/resources.en.js"></script>
+    <script type="text/javascript" src="scripts/math.js"></script>
+    <script type="text/javascript" src="scripts/common.js"></script>
+    <script type="text/javascript" src="scripts/calc.js"></script>
+    <script type="text/javascript">
+        function doEvaluate(query) {
+
+            calc.run(query, {
+                strict: false,
+                complete: function (data, err) {
+                    if (err) {
+                        alert(err.join('\n'));
+                    }
+                    else {
+                        common.get('taResult').innerHTML = data.join('\n');
+                    }
+                }
+            });
+
+        }
+    </script>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td valign="top">
+            Input:
+        </td>
+        <td>
+            <textarea id="taInput" rows="10" cols="50"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="right">
+            <input type="button" value="Evaluate" onclick="doEvaluate(common.get('taInput').value)" />
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">
+            Result:
+        </td>
+        <td>
+            <textarea id="taResult" rows="10" cols="50" disabled></textarea>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
